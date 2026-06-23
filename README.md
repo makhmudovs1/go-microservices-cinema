@@ -1,58 +1,58 @@
-# Cinema - Example of Microservices in Go with Docker, Kubernetes and MongoDB
+# Cinema - пример микросервисов на Go с Docker, Kubernetes и MongoDB
 
-## Overview
+## Обзор
 
-Cinema is an example project which demonstrates the use of microservices for a fictional movie theater.
-The Cinema backend is powered by 4 microservices, all of which happen to be written in Go, using MongoDB for manage the database and Docker to isolate and deploy the ecosystem.
+Cinema — пример проекта, который показывает использование микросервисов для вымышленного кинотеатра.
+Бэкенд Cinema состоит из 4 микросервисов, написанных на Go. Для хранения данных используется MongoDB, а Docker помогает изолировать и запускать всю экосистему.
 
- * Movie Service: Provides information like movie ratings, title, etc.
- * Show Times Service: Provides show times information.
- * Booking Service: Provides booking information.
- * Users Service: Provides movie suggestions for users by communicating with other services.
+ * Сервис фильмов: хранит информацию о фильмах, например название, рейтинг и другие данные.
+ * Сервис сеансов: хранит информацию о расписании показов.
+ * Сервис бронирований: хранит информацию о бронированиях.
+ * Сервис пользователей: хранит данные пользователей и взаимодействует с другими сервисами.
 
-The project structure is based in the knowledge learned in:
+Структура проекта основана на материалах:
 
-* Golang structure: <https://peter.bourgon.org/go-best-practices-2016/#repository-structure>
-* Book Let's Go: <https://lets-go.alexedwards.net/>
+* Структура Go-проектов: <https://peter.bourgon.org/go-best-practices-2016/#repository-structure>
+* Книга Let's Go: <https://lets-go.alexedwards.net/>
 
-Container images used support multi-architectures (amd64, arm/v7 and arm64).
+Используемые контейнерные образы поддерживают несколько архитектур: `amd64`, `arm/v7` и `arm64`.
 
-## Index
+## Содержание
 
-* [Deployment](#deployment)
-* [How To Use Cinema Services](#how-to-use-cinema-services)
-* [Significant Revisions](#significant-revisions)
-* [The big picture](#screenshots)
+* [Запуск](#запуск)
+* [Как использовать сервисы Cinema](#как-использовать-сервисы-cinema)
+* [Полезные материалы](#полезные-материалы)
+* [Скриншоты](#скриншоты)
 
-## Deployment
+## Запуск
 
-The application can be deployed in both environments: **local machine** or in a **kubernetes cluster**. You can find the appropriate documentation for each case in the following links:
+Приложение можно запустить как на **локальной машине**, так и в **Kubernetes-кластере**. Для каждого варианта есть отдельная документация:
 
-* [local machine (docker compose)](./docs/localhost.md)
+* [локальная машина (docker compose)](./docs/localhost.md)
 * [kubernetes (helm)](./docs/kubernetes-helm.md)
 * [kubernetes (timoni)](./docs/kubernetes-timoni.md)
 
-## How To Use Cinema Services
+## Как использовать сервисы Cinema
 
-* [endpoints](./docs/endpoints.md)
+* [эндпоинты](./docs/endpoints.md)
 
-## Significant Revisions
+## Полезные материалы
 
-* [Microservices - Martin Fowler](http://martinfowler.com/articles/microservices.html)
-* [Traefik Proxy Docs](https://doc.traefik.io/traefik/)
-* [MongoDB Go Driver](https://www.mongodb.com/docs/drivers/go/current/)
-* [MongoDB Golang Channel](https://www.youtube.com/c/MongoDBofficial/search?query=golang)
+* [Микросервисы - Martin Fowler](http://martinfowler.com/articles/microservices.html)
+* [Документация Traefik Proxy](https://doc.traefik.io/traefik/)
+* [Go-драйвер MongoDB](https://www.mongodb.com/docs/drivers/go/current/)
+* [Канал MongoDB про Go](https://www.youtube.com/c/MongoDBofficial/search?query=golang)
 
-## Screenshots
+## Скриншоты
 
-### Architecture
+### Архитектура
 
-![overview](docs/images/overview.jpg)
+![общая схема](docs/images/overview.jpg)
 
-### Homepage
+### Главная страница
 
-![website home page](docs/images/website-home.jpg)
+![главная страница сайта](docs/images/website-home.jpg)
 
-### Users List
+### Список пользователей
 
-![users list page](docs/images/website-users.jpg)
+![страница списка пользователей](docs/images/website-users.jpg)
