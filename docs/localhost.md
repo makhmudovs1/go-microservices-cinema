@@ -1,35 +1,35 @@
-# Cinema - Localhost Deployment
+# Cinema - запуск локально
 
-## Overview
+## Обзор
 
-The Cinema project can be deployed in a single machine (localhost) using Docker Compose V2.
+Проект Cinema можно запустить на одной машине через Docker Compose V2.
 
-## Index
+## Содержание
 
-* [Localhost (docker-compose)](#overview)
-* [Requirements](#requirements)
-* [Starting services](#starting-services)
-* [Restore database information](#restore-database-information)
-* [Enabling microservices APIs](#enabling-microservices-apis)
-* [Stoping services](#stoping-services)
-* [Traefik Proxy dashboard](#traefik-proxy-dashboard)
-* [Build from souce code](#build-from-souce-code)
+* [Локальный запуск через Docker Compose](#обзор)
+* [Требования](#требования)
+* [Запуск сервисов](#запуск-сервисов)
+* [Восстановление данных в базе](#восстановление-данных-в-базе)
+* [Открытие API микросервисов](#открытие-api-микросервисов)
+* [Остановка сервисов](#остановка-сервисов)
+* [Dashboard Traefik Proxy](#dashboard-traefik-proxy)
+* [Сборка из исходного кода](#сборка-из-исходного-кода)
 
-## Requirements
+## Требования
 
-* Docker Engine  20.10.22
+* Docker Engine 20.10.22
 * Docker Compose v2.15.1
 
-## Starting services
+## Запуск сервисов
 
-Use the command `compose up` to start all services in your local environment.
+Чтобы запустить все сервисы локально, выполните команду `compose up`.
 
 ```bash
 docker compose up --detach
 ```
 
 <details>
-  <summary>Output</summary>
+  <summary>Вывод</summary>
 
   ```bash
   [+] Running 7/7
@@ -43,14 +43,14 @@ docker compose up --detach
   ```
 </details>
 
-Check the containers running.
+Проверить запущенные контейнеры можно так:
 
 ```bash
 docker compose ps
 ```
 
 <details>
-  <summary>Output</summary>
+  <summary>Вывод</summary>
 
   ```
   NAME    IMAGE                                      COMMAND   SERVICE      PORTS
@@ -64,13 +64,13 @@ docker compose ps
   ```
 </details>
 
-Once the services have started, you can access the web through the following link: <http://localhost>.
+После запуска сервисов сайт будет доступен по ссылке: <http://localhost>.
 
-![Website Home](images/website-home.jpg)
+![главная страница сайта](images/website-home.jpg)
 
-## Restore database information
+## Восстановление данных в базе
 
-You will start using an empty database for all microservices, but if you want you can restore a preconfigured data execute this command:
+После первого запуска база данных будет пустой. Если нужны заранее подготовленные тестовые данные, выполните команду:
 
 ```bash
 docker compose exec db mongorestore \
@@ -79,7 +79,7 @@ docker compose exec db mongorestore \
 ```
 
 <details>
-  <summary>Output</summary>
+  <summary>Вывод</summary>
 
   ```
   .....  preparing collections to restore from
@@ -103,53 +103,53 @@ docker compose exec db mongorestore \
   ```
 </details>
 
-This command will go inside the mongodb container (`db` service described in `compose.yaml` file). Once the command finished the data inserted will be ready to be consulted. Try listing users again <http://localhost/users/list>.
+Эта команда заходит в контейнер MongoDB, то есть в сервис `db`, описанный в `compose.yaml`. После завершения восстановления данные будут готовы к использованию. Например, можно снова открыть список пользователей: <http://localhost/users/list>.
 
-![Users List](images/website-users.jpg)
+![список пользователей](images/website-users.jpg)
 
-## Enabling microservices APIs
+## Открытие API микросервисов
 
-The microservices are not exposed to ensure greater security, but if you need to enable them for testing you can do so through the tags defined by Trafik for the Docker provider.
+По умолчанию API микросервисов не открыты наружу напрямую. Это сделано для большей безопасности. Если нужно открыть их для тестирования, можно включить labels Traefik для Docker provider.
 
 ```yaml
     labels:
-      # Enable public access
+      # Включить публичный доступ
       - "traefik.http.routers.users.rule=PathPrefix(`/api/users/`)"
       - "traefik.http.services.users.loadbalancer.server.port=4000"
 ```
 
-Once exposed all services the following links will be availables:
+После открытия сервисов будут доступны такие ссылки:
 
-| Service | Description |
-|---------|-------------|
-| [Traefik Proxy Dashboard](http://localhost:8080/dashboard/#/) | Allows you to identify Traefik componentes like routers, provider, services, middlewares among others |
-| [List users api](http://localhost/api/users/) | List all users |
-| [List movies api](http://localhost/api/movies/) | List all movies |
-| [List showtimes api](http://localhost/api/showtimes/) | List all showtimes |
-| [List bookings api](http://localhost/api/bookings/) | List all bookings |
+| Сервис | Описание |
+|--------|----------|
+| [Traefik Proxy Dashboard](http://localhost:8080/dashboard/#/) | Позволяет смотреть компоненты Traefik: routers, provider, services, middlewares и другие |
+| [API списка пользователей](http://localhost/api/users/) | Возвращает всех пользователей |
+| [API списка фильмов](http://localhost/api/movies/) | Возвращает все фильмы |
+| [API списка сеансов](http://localhost/api/showtimes/) | Возвращает все сеансы |
+| [API списка бронирований](http://localhost/api/bookings/) | Возвращает все бронирования |
 
-The following command is an example of how to list the users:
+Пример команды для получения списка пользователей:
 
 ```bash
 curl -X GET http://localhost/api/users/
 ```
 
 <details>
-  <summary>Output</summary>
+  <summary>Вывод</summary>
 
   ```
   [{"ID":"600209d347932ef15c50af15","Name":"Wanda","LastName":"Austin"},{"ID":"600209d347932ef15c50af16","Name":"Charles","LastName":"Babbage"},{"ID":"600209d347932ef15c50af17","Name":"Stefan","LastName":"Banach"},{"ID":"600209d347932ef15c50af18","Name":"Laura","LastName":"Bassi"},{"ID":"600209d347932ef15c50af19","Name":"Niels","LastName":"Bohr"}]
   ```
 </details>
 
-## Stopping services
+## Остановка сервисов
 
 ```bash
 docker compose stop
 ```
 
 <details>
-  <summary>Output</summary>
+  <summary>Вывод</summary>
 
   ```
   [+] Running 7/7
@@ -163,22 +163,22 @@ docker compose stop
   ```
 </details>
 
-## Traefik Proxy dashboard
+## Dashboard Traefik Proxy
 
-This project use Traefik Proxy v2.4.2, [the dashboard should look like this image](http://localhost:8080/dashboard/#/):
+В проекте используется Traefik Proxy v2.4.2. Dashboard должен выглядеть примерно так: <http://localhost:8080/dashboard/#/>.
 
-![overview](images/traefik-dashboard.jpg)
+![dashboard Traefik](images/traefik-dashboard.jpg)
 
-Next: [Endpoints](endpoints.md)
+Дальше: [эндпоинты](endpoints.md)
 
-## Build from source code
+## Сборка из исходного кода
 
-If you want to include new functionalities, fix bugs or do some tests use the source code to build the docker image from the docker compose file. To make it uncomment the `build` line in de microservice and comment the `image` line.
+Если нужно добавить функциональность, исправить ошибку или протестировать изменения, можно собрать Docker-образ из исходного кода через Docker Compose. Для этого у нужного микросервиса оставьте `build` и уберите или закомментируйте `image`.
 
 ```yaml
   users:
-    build: ./users                                   # uncomment this line
-    # image: cinema-users:v2.1.0    # comment this line
+    build: ./users                                   # оставить эту строку
+    # image: cinema-users:v2.1.0                    # закомментировать эту строку
     command:
       - "-mongoURI"
       - "mongodb://db:27017/"
@@ -188,7 +188,7 @@ If you want to include new functionalities, fix bugs or do some tests use the so
     #   MONGODB_USERNAME: "demo"
     #   MONGODB_PASSWORD: "e3LBVTPdlzxYbxt9"
     labels: {}
-      # Enable public access
+      # Включить публичный доступ
       # - "traefik.http.routers.users.rule=PathPrefix(`/api/users/`)"
       # - "traefik.http.services.users.loadbalancer.server.port=4000"
 ```

@@ -1,46 +1,46 @@
-# Cinema - Endpoints
+# Cinema - эндпоинты
 
-## User Service
+## Сервис пользователей
 
-This service returns information about the users of Cinema.
+Этот сервис возвращает информацию о пользователях Cinema.
 
-| Service | Method | Endpoint       |
-|---------|--------|----------------|
-| List users | `GET` | `/api/users/` |
-| Get user by Id | `GET` | `/api/users/{id}` |
-| Insert user | `POST` | `/api/users/` |
-| Delete user | `DELETE` | `/api/users/{id}` |
+| Действие | Метод | Эндпоинт |
+|----------|-------|----------|
+| Получить список пользователей | `GET` | `/api/users/` |
+| Получить пользователя по Id | `GET` | `/api/users/{id}` |
+| Добавить пользователя | `POST` | `/api/users/` |
+| Удалить пользователя | `DELETE` | `/api/users/{id}` |
 
-## Movie Service
+## Сервис фильмов
 
-This service is used to get information about a movie. It provides the movie title, rating on a 1-5 scale, director and other information.
+Этот сервис возвращает информацию о фильмах: название, рейтинг по шкале от 1 до 5, режиссера и другие данные.
 
-| Service | Method | Endpoint       |
-|---------|--------|----------------|
-| List movies | `GET` | `/api/movies/` |
-| Get movie by Id | `GET` | `/api/movies/{id}` |
-| Insert movie | `POST` | `/api/movies/` |
-| Delete movie | `DELETE` | `/api/movies/{id}` |
+| Действие | Метод | Эндпоинт |
+|----------|-------|----------|
+| Получить список фильмов | `GET` | `/api/movies/` |
+| Получить фильм по Id | `GET` | `/api/movies/{id}` |
+| Добавить фильм | `POST` | `/api/movies/` |
+| Удалить фильм | `DELETE` | `/api/movies/{id}` |
 
-## Showtimes Service
+## Сервис сеансов
 
-This service is used get a information about showtimes playing on a certain date.
+Этот сервис возвращает информацию о сеансах, запланированных на определенную дату.
 
-| Service | Method | Endpoint       |
-|---------|--------|----------------|
-| List showtimes | `GET` | `/api/showtimes/` |
-| Get showtime by Id | `GET` | `/api/showtimes/{id}` |
-| Get showtime by date | `GET` | `/api/showtimes/filter/date/{date}` |
-| Insert showtime | `POST` | `/api/showtimes/` |
-| Delete showtime | `DELETE` | `/api/showtimes/{id}` |
+| Действие | Метод | Эндпоинт |
+|----------|-------|----------|
+| Получить список сеансов | `GET` | `/api/showtimes/` |
+| Получить сеанс по Id | `GET` | `/api/showtimes/{id}` |
+| Получить сеансы по дате | `GET` | `/api/showtimes/filter/date/{date}` |
+| Добавить сеанс | `POST` | `/api/showtimes/` |
+| Удалить сеанс | `DELETE` | `/api/showtimes/{id}` |
 
-## Booking Service
+## Сервис бронирований
 
-Used to lookup booking information for users.
+Этот сервис возвращает информацию о бронированиях пользователей.
 
-| Service | Method | Endpoint       |
-|---------|--------|----------------|
-| List bookings | `GET` | `/api/bookings/` |
-| Get booking by Id | `GET` | `/api/bookings/{id}` |
-| Insert booking | `POST` | `/api/bookings/` |
-| Delete booking | `DELETE` | `/api/bookings/{id}` |
+| Действие | Метод | Эндпоинт |
+|----------|-------|----------|
+| Получить список бронирований | `GET` | `/api/bookings/` |
+| Получить бронирование по Id | `GET` | `/api/bookings/{id}` |
+| Добавить бронирование | `POST` | `/api/bookings/` |
+| Удалить бронирование | `DELETE` | `/api/bookings/{id}` |
