@@ -1,0 +1,56 @@
+# Значения по умолчанию для cinema.
+# Это файл в формате YAML.
+# Объявите переменные, которые будут переданы в шаблоны.
+
+### Значения Mongodb ###
+mongodb:
+  # указывает, использовать ли зависимость mongodb
+  enabled: true
+
+  image:
+    repository: mongo
+    tag: 4.2.23
+
+  readinessProbe:
+    enabled: false
+  livenessProbe:
+    enabled: false
+
+  persistence:
+    mountPath: /data/db
+
+# Значения сайта Cinema
+website:
+  args:
+    - "-usersAPI"
+    - "http://cinema-users/api/users/"
+    - "-moviesAPI"
+    - "http://cinema-movies/api/movies/"
+    - "-showtimesAPI"
+    - "http://cinema-showtimes/api/showtimes/"
+    - "-bookingsAPI"
+    - "http://cinema-bookings/api/bookings/"
+
+# Значения сервиса пользователей Cinema
+users:
+  args:
+    - "-mongoURI"
+    - "mongodb://cinema-mongodb:27017/"
+
+# Значения сервиса фильмов Cinema
+movies:
+  args:
+    - "-mongoURI"
+    - "mongodb://cinema-mongodb:27017/"
+
+# Значения сервиса сеансов Cinema
+showtimes:
+  args:
+    - "-mongoURI"
+    - "mongodb://cinema-mongodb:27017/"
+
+# Значения сервиса бронирований Cinema
+bookings:
+  args:
+    - "-mongoURI"
+    - "mongodb://cinema-mongodb:27017/"

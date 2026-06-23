@@ -1,0 +1,10 @@
+# VCS
+
+# Go
+vendor/
+go.mod
+go.sum
+
+# CUE
+*_tool.cue
+debug_values.cue

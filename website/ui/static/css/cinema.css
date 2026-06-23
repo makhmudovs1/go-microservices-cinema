@@ -1,0 +1,110 @@
+html,
+body {
+    min-height: 100vh;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    flex: 1 0 auto;
+    flex-direction: column;
+}
+
+.album {
+    flex: 1 0 auto;
+}
+
+.jumbotron {
+    margin-bottom: 0;
+}
+
+.site-header {
+    background: #fff;
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    z-index: 1020;
+}
+
+.nav-links {
+    gap: 3rem;
+}
+
+.admin-form {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    padding: 1rem;
+}
+
+.btn-group form {
+    display: inline-block;
+}
+
+.movie-card {
+    overflow: hidden;
+}
+
+.movie-poster {
+    aspect-ratio: 2 / 3;
+    background: #343a40;
+    object-fit: cover;
+    width: 100%;
+}
+
+.movie-poster-detail {
+    background: #343a40;
+    height: 100%;
+    min-height: 360px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.booking-movie-grid {
+    display: grid;
+    gap: 0.75rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    margin-bottom: 0.75rem;
+}
+
+.booking-movie-option {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.booking-movie-option input {
+    left: 0.5rem;
+    position: absolute;
+    top: 0.5rem;
+    z-index: 1;
+}
+
+.booking-movie-option img {
+    aspect-ratio: 2 / 3;
+    background: #343a40;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+}
+
+.booking-movie-option span {
+    display: block;
+    font-size: 0.875rem;
+    line-height: 1.2;
+    min-height: 2.6rem;
+    padding: 0.5rem;
+}
+
+.booking-movie-option:has(input:checked) {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="750" viewBox="0 0 500 750" role="img" aria-label="Avengers Doomsday poster placeholder">
+  <defs>
+    <linearGradient id="doom" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111827"/>
+      <stop offset="0.55" stop-color="#4b1d24"/>
+      <stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="750" fill="url(#doom)"/>
+  <circle cx="250" cy="295" r="150" fill="none" stroke="#f59e0b" stroke-width="4" opacity="0.55"/>
+  <path d="M250 116 L308 322 L450 322 L334 407 L380 584 L250 476 L120 584 L166 407 L50 322 L192 322 Z" fill="#f8fafc" opacity="0.12"/>
+  <text x="250" y="505" text-anchor="middle" fill="#fff7ed" font-family="Arial, sans-serif" font-size="44" font-weight="700">AVENGERS</text>
+  <text x="250" y="562" text-anchor="middle" fill="#fed7aa" font-family="Arial, sans-serif" font-size="38" font-weight="700">DOOMSDAY</text>
+  <text x="250" y="626" text-anchor="middle" fill="#ffedd5" font-family="Arial, sans-serif" font-size="18">teaser poster placeholder</text>
+</svg>
