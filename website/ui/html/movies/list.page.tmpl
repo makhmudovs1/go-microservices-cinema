@@ -1,0 +1,52 @@
+{{template "base" .}}
+
+{{define "main"}}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <form class="admin-form mb-4" action="/movies/create" method="POST">
+            <div class="form-row align-items-end">
+                <div class="col-md-3 mb-2">
+                    <label for="movie-title">Title</label>
+                    <input class="form-control" id="movie-title" name="title" type="text" required>
+                </div>
+                <div class="col-md-3 mb-2">
+                    <label for="movie-director">Director</label>
+                    <input class="form-control" id="movie-director" name="director" type="text" required>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <label for="movie-rating">Rating</label>
+                    <input class="form-control" id="movie-rating" name="rating" type="number" min="0" max="5" step="0.1" required>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <button class="btn btn-primary btn-block" type="submit">Create</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row">
+            {{range .Movies}}
+            <div class="col-md-3">
+                <div class="card movie-card mb-3 shadow-sm">
+                    <img class="movie-poster" src="{{posterURL .Title}}" alt="{{.Title}} poster" onerror="this.onerror=null;this.src='/static/img/posters/cinema-placeholder.svg';">
+                    <div class="card-body">
+                        <p class="card-text">{{.Title}}</p>
+                        <p class="card-text text-muted mb-2">{{.Director}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary" href="/movies/view/{{.ID.Hex}}" role="button">View</a>
+                                <form action="/movies/delete/{{.ID.Hex}}" method="POST">
+                                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+
+    </div>
+</div>
+
+{{end}}

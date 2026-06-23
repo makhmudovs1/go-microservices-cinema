@@ -1,0 +1,35 @@
+{{template "base" .}}
+
+{{define "main"}}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="col-md-6">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <h2 class="h4 mb-3">Register customer</h2>
+                        <form action="/register" method="POST">
+                            <div class="form-group">
+                                <label for="register-name">First name</label>
+                                <input class="form-control" id="register-name" name="name" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-lastname">Last name</label>
+                                <input class="form-control" id="register-lastname" name="lastname" type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="register-email">Email</label>
+                                <input class="form-control" id="register-email" name="email" type="email" required>
+                            </div>
+                            <button class="btn btn-primary" type="submit">Register</button>
+                            <a class="btn btn-outline-secondary" href="/bookings/list" role="button">Back to bookings</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{end}}

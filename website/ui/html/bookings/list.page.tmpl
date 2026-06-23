@@ -1,0 +1,66 @@
+{{template "base" .}}
+
+{{define "main"}}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+        <form class="admin-form mb-4" action="/bookings/create" method="POST">
+            <div class="form-row align-items-end">
+                <div class="col-md-4 mb-2">
+                    <label for="booking-user">User</label>
+                    <select class="form-control" id="booking-user" name="userid" required>
+                        {{range .Users}}
+                        <option value="{{.ID.Hex}}">{{.Name}} {{.LastName}}</option>
+                        {{end}}
+                    </select>
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label for="booking-showtime">Showtime</label>
+                    <select class="form-control" id="booking-showtime" name="showtimeid" required>
+                        {{range .ShowTimes}}
+                        <option value="{{.ID.Hex}}">{{.Date}}</option>
+                        {{end}}
+                    </select>
+                </div>
+                <div class="col-md-2 mb-2">
+                    <button class="btn btn-primary btn-block" type="submit">Create</button>
+                </div>
+            </div>
+            <label class="d-block mt-3">Movies</label>
+            <div class="booking-movie-grid">
+                {{range .Movies}}
+                <label class="booking-movie-option">
+                    <input type="checkbox" name="movies" value="{{.ID.Hex}}">
+                    <img src="{{posterURL .Title}}" alt="{{.Title}} poster" onerror="this.onerror=null;this.src='/static/img/posters/cinema-placeholder.svg';">
+                    <span>{{.Title}}</span>
+                </label>
+                {{end}}
+            </div>
+            <a href="/register">Register new customer</a>
+        </form>
+
+        <div class="row">
+            {{range .BookingsData}}
+            <div class="col-md-3">
+                <div class="card mb-3 shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">{{.UserFullName}}</p>
+                        <p class="card-text">{{.ShowTimeDate}}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="btn btn-sm btn-outline-secondary" href="/bookings/view/{{.ID}}" role="button">View</a>
+                                <form action="/bookings/delete/{{.ID}}" method="POST">
+                                    <button class="btn btn-sm btn-outline-danger" type="submit">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{end}}
+        </div>
+
+    </div>
+</div>
+
+{{end}}
